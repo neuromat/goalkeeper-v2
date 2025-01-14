@@ -10,7 +10,7 @@ on:
 
 env:
   GODOT_VERSION: 4.3
-  EXPORT_NAME: GoalkeeperRematch
+  EXPORT_NAME: Goalkeeper-2
 
 jobs:
   export-linux:
