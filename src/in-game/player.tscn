@@ -1,0 +1,116 @@
+[gd_scene load_steps=22 format=3 uid="uid://30v3dcqrrswi"]
+
+[ext_resource type="Script" path="res://src/in-game/player.gd" id="1_qcxv7"]
+[ext_resource type="Texture2D" uid="uid://c7p5idkb856ch" path="res://sprites/goalkeeper/idle.png" id="2_2b81c"]
+[ext_resource type="Texture2D" uid="uid://bfwgo6r162mc5" path="res://sprites/goalkeeper/jump-center-1.png" id="3_n2rik"]
+[ext_resource type="Texture2D" uid="uid://bp65plxtv4cv7" path="res://sprites/goalkeeper/jump-center-2.png" id="4_j6e1c"]
+[ext_resource type="Texture2D" uid="uid://qsvkhbtjpkdv" path="res://sprites/goalkeeper/jump-center-3.png" id="5_ghcn5"]
+[ext_resource type="Texture2D" uid="uid://c116jtxtonolr" path="res://sprites/goalkeeper/jump-center-4.png" id="6_bufp8"]
+[ext_resource type="Texture2D" uid="uid://b2cxh0osc385c" path="res://sprites/goalkeeper/jump-center-5.png" id="7_jrgdl"]
+[ext_resource type="Texture2D" uid="uid://dnllb7ly3mu6" path="res://sprites/goalkeeper/jump-center-6.png" id="8_2bpd3"]
+[ext_resource type="Texture2D" uid="uid://dli2wdcvc3ctg" path="res://sprites/goalkeeper/jump-center-7.png" id="9_2ik7k"]
+[ext_resource type="Texture2D" uid="uid://6ogikclmr1jf" path="res://sprites/goalkeeper/jump-center-8.png" id="10_cdue6"]
+[ext_resource type="Texture2D" uid="uid://f6s83otisc6w" path="res://sprites/goalkeeper/jump-1.png" id="11_6uui3"]
+[ext_resource type="Texture2D" uid="uid://clj1xpikf0fle" path="res://sprites/goalkeeper/jump-2.png" id="12_0cfle"]
+[ext_resource type="Texture2D" uid="uid://dayhouwgj6m3a" path="res://sprites/goalkeeper/jump-3.png" id="13_ka2ii"]
+[ext_resource type="Texture2D" uid="uid://njwsvaww1xj3" path="res://sprites/goalkeeper/jump-4.png" id="14_07cov"]
+[ext_resource type="Texture2D" uid="uid://cwjhy4smtjtb4" path="res://sprites/goalkeeper/jump-5.png" id="15_jarfn"]
+[ext_resource type="Texture2D" uid="uid://j4tbupqkfmh5" path="res://sprites/goalkeeper/jump-6.png" id="16_vlwrf"]
+[ext_resource type="Texture2D" uid="uid://cmjh6dxa7ca6f" path="res://sprites/goalkeeper/jump-7.png" id="17_1448k"]
+[ext_resource type="Texture2D" uid="uid://dmqghoyacqsm" path="res://sprites/goalkeeper/jump-8.png" id="18_fm4ks"]
+[ext_resource type="Texture2D" uid="uid://d4mhb8ygeu7ej" path="res://sprites/goalkeeper/jump-9.png" id="19_e8ctk"]
+[ext_resource type="PackedScene" uid="uid://ckla42cdb8y4e" path="res://src/utils/stopwatch.tscn" id="20_oejvm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rvgw7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2b81c")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_n2rik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j6e1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ghcn5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bufp8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jrgdl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2bpd3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2ik7k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_cdue6")
+}],
+"loop": false,
+"name": &"jump-center",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_6uui3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0cfle")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ka2ii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_07cov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_jarfn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_vlwrf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_1448k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_fm4ks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_e8ctk")
+}],
+"loop": false,
+"name": &"jump-side",
+"speed": 9.0
+}]
+
+[node name="Player" type="Node"]
+script = ExtResource("1_qcxv7")
+metadata/_edit_group_ = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer"]
+position = Vector2(576, 324)
+sprite_frames = SubResource("SpriteFrames_rvgw7")
+animation = &"idle"
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Stopwatch" parent="." instance=ExtResource("20_oejvm")]
