@@ -1,0 +1,7 @@
+context,left,center
+left, 0, 0.3, 0.7
+left > center, 0, 1
+centre > center, 1.0, 0.0
+right > center, 0, 0.5
+left, 0, 0.5
+right*,0,1
