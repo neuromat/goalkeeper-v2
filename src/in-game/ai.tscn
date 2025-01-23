@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmtmoo0up6jld"]
+
+[ext_resource type="Script" path="res://src/in-game/ai.gd" id="1_rw3w7"]
+[ext_resource type="PackedScene" uid="uid://bkxmwf0rc4u8u" path="res://src/in-game/ball.tscn" id="2_srpc8"]
+
+[node name="AI" type="Node"]
+script = ExtResource("1_rw3w7")
+
+[node name="Ball" parent="." instance=ExtResource("2_srpc8")]
+
+[connection signal="done" from="Ball" to="." method="_on_ball_done"]
