@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl17rmkbmj7n2"]
+
+[ext_resource type="Script" path="res://src/in-game/match.gd" id="1_i0c5j"]
+[ext_resource type="PackedScene" uid="uid://30v3dcqrrswi" path="res://src/in-game/player.tscn" id="2_c8s6a"]
+[ext_resource type="PackedScene" uid="uid://bmtmoo0up6jld" path="res://src/in-game/ai.tscn" id="2_g01o4"]
+[ext_resource type="PackedScene" uid="uid://c1nx4broy1tnv" path="res://src/in-game/match_transparent_ui.tscn" id="4_a0d5g"]
+
+[node name="Match" type="Node"]
+script = ExtResource("1_i0c5j")
+
+[node name="RoundCountdown" type="Timer" parent="."]
+
+[node name="FeedbackCountdown" type="Timer" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_c8s6a")]
+
+[node name="AI" parent="." instance=ExtResource("2_g01o4")]
+
+[node name="MatchTransparentUi" parent="." instance=ExtResource("4_a0d5g")]
