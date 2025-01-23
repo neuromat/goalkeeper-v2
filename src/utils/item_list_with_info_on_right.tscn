@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctj0r6r57qkwh"]
+
+[ext_resource type="Script" path="res://src/utils/item_list_with_info_on_right.gd" id="1_f8uqu"]
+
+[node name="ItemListWithInfosOnRight" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_f8uqu")
+
+[node name="ItemList" type="ItemList" parent="."]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+max_text_lines = 10
+auto_height = true
+
+[node name="Label" type="Label" parent="."]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "SELECTED_CONTEXT_TREE_INFO_PLACEHOLDER"
+clip_text = true
+
+[connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]
