@@ -73,13 +73,10 @@ func _on_pre_game_event(event: Dictionary) -> void:
 	#	}
 	# }
 	if event['action'] == 'PLAY':
-		var options = {
-			'match': {
-				'match_options': event['match_options'],
-				'context_tree_file_path': \
-					event['selected_context_tree_file_path']
-			}
+		var options = {	
+			'match_options': event['match_options']
 		}
+		options['match_options']['context_tree_file_path'] = event['selected_context_tree_file_path']
 		_load_in_game(options)
 	elif  event['action'] == 'QUIT':
 		quit()
