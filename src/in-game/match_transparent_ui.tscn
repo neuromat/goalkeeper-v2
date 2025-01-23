@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1nx4broy1tnv"]
+
+[ext_resource type="Script" path="res://src/in-game/match_transparent_ui.gd" id="1_5dxd3"]
+
+[node name="MatchTransparentUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5dxd3")
+
+[node name="TopContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="ContextTreeFilePath" type="Label" parent="TopContainer/VBoxContainer"]
+layout_mode = 2
+text = "CONTEXT_TREE_FILE_PATH_PLACEHOLDER"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayerHistory" type="VBoxContainer" parent="TopContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Title" type="Label" parent="TopContainer/VBoxContainer/HBoxContainer/PlayerHistory"]
+layout_mode = 2
+text = "PLAYER_HISTORY_TITLE"
+
+[node name="AiHistory" type="VBoxContainer" parent="TopContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+alignment = 2
+
+[node name="Title" type="Label" parent="TopContainer/VBoxContainer/HBoxContainer/AiHistory"]
+layout_mode = 2
+text = "AI_HISTORY_TITLE"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Readiness" type="Label" parent="MarginContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "READINESS_TIME_PLACEHOLDER"
+
+[node name="Response" type="Label" parent="MarginContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "RESPONSE_TIME_PLACEHOLDER"
+
+[node name="Feedback" type="Label" parent="MarginContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "FEEDBACK_TIME_PLACEHOLDER
+"

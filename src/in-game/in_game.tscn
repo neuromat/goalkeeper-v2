@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqs2ic8xjdhvu"]
+
+[ext_resource type="Script" path="res://src/in-game/in_game.gd" id="1_ahsw3"]
+[ext_resource type="PackedScene" uid="uid://bl17rmkbmj7n2" path="res://src/in-game/match.tscn" id="2_v3eca"]
+
+[node name="InGame" type="Node"]
+script = ExtResource("1_ahsw3")
+
+[node name="Match" parent="." instance=ExtResource("2_v3eca")]
