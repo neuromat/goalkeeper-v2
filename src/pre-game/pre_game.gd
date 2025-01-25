@@ -2,7 +2,7 @@ class_name PreGame
 extends Node
 
 @export var context_trees_root_dir = \
-	'res://data'
+	'user://context_trees'
 
 @onready var context_tree_files_container: ContextTreeFilesContainer = \
 	$Control/MarginContainer/HBoxContainer/HBoxContainer/ContextTreeFilesMargin/ContextTreeFilesContainer
@@ -14,7 +14,6 @@ extends Node
 signal event_bus(event: Dictionary)
 
 func _ready() -> void:
-	print_debug('pre-game ready!')
 	if _is_root_scene():
 		_play_demo()
 
@@ -25,13 +24,7 @@ func start() -> void:
 
 # private
 func _setup_context_tree_options() -> void:
-	var file_names = DirAccess.get_files_at(context_trees_root_dir)
-	var absolute_file_paths = []
-	for f in file_names:
-		if f.ends_with('.csv'):
-			var file_full_path = "%s/%s" % [ context_trees_root_dir, f ]
-			absolute_file_paths.append(file_full_path)
-	context_tree_files_container.load_(absolute_file_paths)
+	context_tree_files_container.load_()
 
 
 # signal handling
