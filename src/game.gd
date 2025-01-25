@@ -6,19 +6,22 @@ extends Node
 @onready var post_game_scene: PackedScene = preload("res://src/post-game/post_game.tscn")
 
 var pre_game_node: PreGame
-var in_game_node #: InGame
-var post_game_node #: PostGame
+var in_game_node: InGame
+var post_game_node: PostGame
 
 var context_tree_file_path: String
 var n_rounds: int = 3
 var node_loaded: String
 
 func _ready() -> void:
+	_setup()
 	pre_game_node = pre_game_scene.instantiate()
 	# Running this scene isolated (F6)
 	if _is_root_scene():
 		_play_demo()
 
+func _setup() -> void:
+	DefaultFilesLoader.load()
 
 func _is_root_scene() -> bool:
 	return self == get_tree().root.get_child(0)
