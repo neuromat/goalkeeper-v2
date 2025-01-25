@@ -10,7 +10,7 @@ func _init(
 	n_rounds_: int,
 	readiness_time_in_s_: float,
 	feedback_time_in_s_: float):
-	_validate(n_rounds, readiness_time_in_s, feedback_time_in_s)
+	_validate(n_rounds_, readiness_time_in_s_, feedback_time_in_s_)
 	self.context_tree_file_path = context_tree_file_path_ # TODO validate
 	self.n_rounds = n_rounds_
 	self.readiness_time_in_s = readiness_time_in_s_
