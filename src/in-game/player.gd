@@ -38,7 +38,7 @@ func _play_demo():
 		await play_animation(action.choice)
 	get_tree().quit()
 
-func play_turn() -> PlayerAction :
+func play_turn() -> PlayerAction:
 	$Stopwatch.reset()
 	is_active = true
 	$Stopwatch.start()
