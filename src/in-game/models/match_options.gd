@@ -18,10 +18,26 @@ func _init(
 	self.readiness_time_in_s = readiness_time_in_s_
 	self.feedback_time_in_s = feedback_time_in_s_
 
+
+func to_dictionary() -> Dictionary:
+	return {
+		"context_tree_file_path": context_tree_file_path,
+		"n_rounds": n_rounds,
+		"readiness_time_in_s": readiness_time_in_s,
+		"feedback_time_in_s": feedback_time_in_s
+	}
+
+static func from_dictionary(dictionary: Dictionary) -> MatchOptions:
+	return MatchOptions.new(
+		dictionary["context_tree_file_path"],
+		dictionary["n_rounds"],
+		dictionary["readiness_time_in_s"],
+		dictionary["feedback_time_in_s"]
+	)
+
 static func _validate(n_rounds_: int,
 	readiness_time_in_s_: float,
-	feedback_time_in_s_: float,
-	testing: bool = false) -> Array:
+	feedback_time_in_s_: float) -> Array:
 	var errors: Array = []
 	if n_rounds_ <= 0:
 		errors.append("\n\t'n_rounds' must be > 0")
