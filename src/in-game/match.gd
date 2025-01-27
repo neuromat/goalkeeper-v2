@@ -4,8 +4,7 @@ extends Node
 var match_options: MatchOptions
 
 var round_: int = 1
-var player_actions: Array = []
-var ai_actions: Array = []
+var round_results: Array = [] # Array<RoundResult>
 
 func _is_root_scene() -> bool:
 	return self == get_tree().root.get_child(0)
@@ -32,8 +31,7 @@ func initialize(
 	match_options_: MatchOptions):
 	self.match_options = match_options_
 	self.round_ = 1
-	self.player_actions.clear()
-	self.ai_actions.clear()
+	self.round_results.clear()
 	
 	var context_tree_file_path = match_options.context_tree_file_path
 	$Player.pause()
@@ -42,45 +40,37 @@ func initialize(
 	$MatchTransparentUi.initialize(context_tree_file_path)
 	$AI.initialize(context_tree_file_path)
 
-func play():
+func play() -> void:
 	for i in range(match_options.n_rounds):
 		await play_round()
-		var player_action = player_actions[i]
-		var ai_action = ai_actions[i]
-		$MatchTransparentUi.update(
-			player_action, ai_action)
-		await play_animations(player_action[0], ai_action[0])
+		$MatchTransparentUi.update(self.round_results[i])
+		await play_animations(self.round_results[i])
 
 func play_round() -> void:
 	$ReadinessCountdown.start(match_options.readiness_time_in_s)
 	await $ReadinessCountdown.timeout
 	
-	var player_action = await get_player_action() # [choice, response_time_in_us];
-	var player_choice = player_action[0]
-	
-	if player_choice:
-		player_actions.append(player_action)
-		var ai_action = get_ai_action()
-		ai_actions.append(ai_action)
-		round_ += 1
+	var player_action = await get_player_action()
+	var ai_action = await get_ai_action()
+	var round_result = RoundResult.new(player_action, ai_action)
+	self.round_results.append(round_result)
 
-func get_player_action(): # [choice, response_time_in_us]
+func get_player_action() -> PlayerAction:
 	$Player.unpause()
-	var action = await $Player.play_turn()
+	var action: PlayerAction = await $Player.play_turn()
 	$Player.pause()
 	return action
 
-func get_ai_action() -> Array:
+func get_ai_action() -> AiAction:
 	var action = $AI.play_turn()
 	return action
 
-func play_animations(
-	player_choice: String, ai_choice: String) -> void:
+func play_animations(round_result: RoundResult) -> void:
 	# it will only wait for the FeedbackCountdown to finish,
 	# 	and ignore the animation time
 	$FeedbackCountdown.start(match_options.feedback_time_in_s)
-	$Player.play_animation(player_choice)
-	$AI.play_animation(ai_choice)
+	$Player.play_animation(round_result.player_action.choice)
+	$AI.play_animation(round_result.ai_action.choice)
 	await $FeedbackCountdown.timeout
 
 static func _get_demo_data():
