@@ -40,18 +40,19 @@ func initialize(
 	$MatchTransparentUi.initialize(context_tree_file_path)
 	$AI.initialize(context_tree_file_path)
 
-func play() -> void:
+func play() -> MatchResult:
 	for i in range(match_options.n_rounds):
 		await play_round()
 		$MatchTransparentUi.update(self.round_results[i])
 		await play_animations(self.round_results[i])
+	return MatchResult.new(self.round_results)
 
 func play_round() -> void:
 	$ReadinessCountdown.start(match_options.readiness_time_in_s)
 	await $ReadinessCountdown.timeout
 	
 	var player_action = await get_player_action()
-	var ai_action = await get_ai_action()
+	var ai_action = get_ai_action()
 	var round_result = RoundResult.new(player_action, ai_action)
 	self.round_results.append(round_result)
 
