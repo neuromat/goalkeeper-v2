@@ -11,16 +11,16 @@ class_name MatchTransparentUi
 @onready var response_label: Label = $MarginContainer2/HBoxContainer2/Response
 @onready var feedback_label: Label = $MarginContainer2/HBoxContainer2/Feedback
 
-func _add_to_player_history(player_action: Array):
-	# player_action: [choice, response_time_in_us]
+func _add_to_player_history(player_action: PlayerAction):
 	var label = Label.new()
-	label.text = "%s: %s (us)" % player_action
+	label.text = "%s: %s (us)" % [ player_action.choice, player_action.response_time_in_us ]
 	player_history.add_child(label)
 	
-func _add_to_ai_history(ai_action: Array):
+func _add_to_ai_history(ai_action: AiAction):
 	# ai_action: [choice, context, probability]
 	var label = Label.new()
-	label.text = "%s: %s | %0.3f" % [ai_action[1], ai_action[0], ai_action[2]]
+	label.text = "%s: %s | %0.3f" % [ ai_action.context, \
+		ai_action.choice, ai_action.probability]
 	ai_history.add_child(label)
 
 func _update_context_tree_file_path(context_tree_file_path: String):
@@ -34,9 +34,9 @@ func update_realtime_timers(
 	response_label.text = "Response (s): %0.6f" % response_in_s
 	feedback_label.text = "Feedback (s): %0.2f" % feedback_in_s
 
-func update(player_action: Array, ai_action: Array):
-	_add_to_player_history(player_action)
-	_add_to_ai_history(ai_action)
+func update(round_result: RoundResult):
+	_add_to_player_history(round_result.player_action)
+	_add_to_ai_history(round_result.ai_action)
 
 func initialize(
 	context_tree_file_path: String) -> void:

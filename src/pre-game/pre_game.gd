@@ -39,7 +39,7 @@ func _on_play_pressed() -> void:
 			_get_readiness_time_in_s(),
 			_get_feedback_time_in_s()
 		)
-	).to_dictionary()
+	).to_dictionary() # FIXME the event doesn't have to be a Dict; use the PreGameEvent instead
 	_emit_event(event)
 
 func _on_quit_pressed() -> void:

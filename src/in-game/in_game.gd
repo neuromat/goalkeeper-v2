@@ -11,37 +11,25 @@ func _is_root_scene() -> bool:
 	return self == get_tree().root.get_child(0)
 
 func _play_demo():
-	const demo_options = {
-		'match_options': {
-			'context_tree_file_path': \
-				'res://data/01_valid_context_tree.csv',
-			'n_rounds': 4,
-			'setup_time': 2.5,
-			'feedback_time': 1.25
-		}
-	}
+	var match_options = MatchOptions.new(
+			"res://data/01_valid_context_tree.csv", 3, .75, 1.25)
+	var demo_options = InGameOptions.new(match_options)
 	await start(demo_options)
 
 # public
-func start(options: Dictionary) -> void:
-	var event = await _play_match(options['match_options'])
-	
+func start(in_game_options: InGameOptions) -> void:
+	var match_result = await _play_match(
+		in_game_options.match_options)
+	var in_game_event = InGameEvent.new(match_result)
 	if _is_root_scene():
+		print_debug(in_game_event.to_dictionary())
 		get_tree().quit()
 	else:
-		event_bus.emit(event)
+		event_bus.emit(in_game_event)
 
 
 # private
-func _play_match(options: Dictionary) -> Dictionary:
-	var context_tree_file_path = options['context_tree_file_path']
-	$Match.initialize(
-		context_tree_file_path,
-		options)
-	# TODO: $Match.play() should return data from the match
-	# 	including "MATCH_ABANDONED"
-	await $Match.play()
-	return {
-		"type": "MATCH_ENDED",
-		"data": {}
-	}
+func _play_match(match_options: MatchOptions) -> MatchResult:
+	$Match.initialize(match_options)
+	var result: MatchResult = await $Match.play()
+	return result

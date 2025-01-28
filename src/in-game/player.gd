@@ -7,8 +7,6 @@ signal async_action(action: String)
 @onready var sub_vierport: SubViewport = $SubViewportContainer/SubViewport
 @onready var sprite: AnimatedSprite2D = $SubViewportContainer/AnimatedSprite2D
 
-# [TODO] refactor: use "choice" for choices, and action to [choice, choice_metadata]
-
 func _unhandled_input(event: InputEvent) -> void:
 	var action: String
 	
@@ -19,7 +17,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			action = 'CENTER'
 		elif event.is_action_pressed('right'):
 			action = 'RIGHT'
-
+	
 	if action:
 		sub_vierport.set_input_as_handled()
 		async_action.emit(action)
@@ -34,13 +32,13 @@ func _is_root_scene() -> bool:
 	return self == get_tree().root.get_child(0)
 	
 func _play_demo():
-	var choice
+	var action: PlayerAction
 	for i in range(0, 5):
-		choice = (await play_turn())[0] # [choice, response_time]
-		await play_animation(choice)
+		action = (await play_turn())
+		await play_animation(action.choice)
 	get_tree().quit()
 
-func play_turn() -> Array:
+func play_turn() -> PlayerAction:
 	$Stopwatch.reset()
 	is_active = true
 	$Stopwatch.start()
@@ -48,7 +46,8 @@ func play_turn() -> Array:
 	$Stopwatch.stop()
 	self.is_active = false
 
-	return [action, $Stopwatch.elapsed_time_in_us()]
+	return PlayerAction.new(
+		action, $Stopwatch.elapsed_time_in_us())
 
 func play_animation(action: String) -> void:
 	if action == 'CENTER':
