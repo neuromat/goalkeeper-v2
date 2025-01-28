@@ -36,6 +36,7 @@ func get_selected_context_tree_file() -> ContextTreeFile:
 	return context_tree_files[selected_context_tree_idx]
 
 func reset() -> void:
+	items_list.reset()
 	absolute_file_paths = []
 	selected_context_tree_idx = -1
 	context_tree_files = []
@@ -72,6 +73,6 @@ func _on_item_list_selected(index: int) -> void:
 	else:
 		selected_context_tree_idx = -1
 
-
 func _on_refresh_pressed() -> void:
-	pass # Replace with function body.
+	reset()
+	load_()
