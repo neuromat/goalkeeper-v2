@@ -1,7 +1,7 @@
 class_name InGame
 extends Node
 
-signal event_bus(event: Dictionary)
+signal event_bus(event: InGameEvent)
 
 func _ready() -> void:
 	if _is_root_scene():

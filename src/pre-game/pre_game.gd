@@ -8,7 +8,7 @@ extends Node
 @onready var buttons: VBoxContainer = \
 	$Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/ButtonsMargin/Buttons
 
-signal event_bus(event: Dictionary)
+signal event_bus(event: PreGameEvent)
 
 func _ready() -> void:
 	if _is_root_scene():
@@ -39,11 +39,11 @@ func _on_play_pressed() -> void:
 			_get_readiness_time_in_s(),
 			_get_feedback_time_in_s()
 		)
-	).to_dictionary() # FIXME the event doesn't have to be a Dict; use the PreGameEvent instead
+	)
 	_emit_event(event)
 
 func _on_quit_pressed() -> void:
-	var event = { "action": "QUIT" }
+	var event = PreGameEvent.new(PreGameEvent.QUIT_GAME)
 	_emit_event(event)
 
 
@@ -68,13 +68,13 @@ func _is_root_scene() -> bool:
 func _play_demo():
 	start()
 
-func _emit_event(event: Dictionary) -> void:
-	print_debug(event)
+func _emit_event(event: PreGameEvent) -> void:
 	if _is_root_scene():
 		_handle_event_internally(event)
 	else:
 		event_bus.emit(event)
 
-func _handle_event_internally(event: Dictionary) -> void:
+func _handle_event_internally(event: PreGameEvent) -> void:
+	print_debug(event.to_dictionary())
 	if event['type'] == PreGameEvent.QUIT_GAME:
 		get_tree().quit()
