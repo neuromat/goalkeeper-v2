@@ -18,6 +18,8 @@ func _init(
 			self.match_options = match_options_
 
 func to_dictionary() -> Dictionary:
+	if self.match_options == null:
+		return { "type": self.type }
 	return {
 		"type": self.type,
 		"match_options": self.match_options.to_dictionary()
