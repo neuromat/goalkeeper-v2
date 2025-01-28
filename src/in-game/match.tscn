@@ -8,7 +8,7 @@
 [node name="Match" type="Node"]
 script = ExtResource("1_i0c5j")
 
-[node name="RoundCountdown" type="Timer" parent="."]
+[node name="ReadinessCountdown" type="Timer" parent="."]
 
 [node name="FeedbackCountdown" type="Timer" parent="."]
 

@@ -18,15 +18,17 @@ func _play_demo():
 	initialize(context_tree_file_path)
 	for i in range(0, 10):
 		var action = play_turn()
-		await play_animation(action[0])
+		await play_animation(action.choice)
 	get_tree().quit()
 
 func initialize(context_tree_file_path_: String):
 	context_tree = ContextTree.new()
 	context_tree.initialize(context_tree_file_path_)
 
-func play_turn() -> Array: # [choice, context, probability]
-	return context_tree.get_action()
+func play_turn() -> AiAction:
+	# TODO refactor this: context_tree shouldn't return an action
+	var a = context_tree.get_action() # [choice, context, probability]
+	return AiAction.new(a[0], a[1], a[2])
 
 func play_animation(choice: String):
 	await $Ball.play_animation(choice)

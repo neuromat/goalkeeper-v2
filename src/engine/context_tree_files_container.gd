@@ -19,20 +19,15 @@ func _is_root_scene() -> bool:
 	return self == get_tree().root.get_child(0)
 
 func _play_demo():
-	const demo_paths: Array = [
-		'res://data/00_invalid_syntax_context_tree.csv',
-		'res://data/01_valid_context_tree.csv',
-		'res://data/02_valid_context_tree_with_initial_context.csv',
-		'res://data/03_invalid_semantic_context_tree.csv'
-	]
-	load_(demo_paths)
+	load_()
 
 
-func load_(absolute_file_paths_: Array) -> void:
-	absolute_file_paths = absolute_file_paths_
+func load_() -> void:
+	_load_absolute_file_paths()
 	var data = []
-	for f in absolute_file_paths_:
-		data.append(_load_context_tree_file(f as String))
+	for f in absolute_file_paths:
+		data.append(
+			_load_context_tree_file(f as String))
 	items_list.load_(data)
 
 func get_selected_context_tree_file() -> ContextTreeFile:
@@ -61,6 +56,12 @@ func _load_context_tree_file(absolute_file_path: String) -> Dictionary:
 		'info': info
 	}
 
+func _load_absolute_file_paths() -> void:
+	var file_names = DirAccess.get_files_at(DefaultFilesLoader.destination_folder_path)
+	for f in file_names:
+		if f.ends_with('.csv'):
+			var file_full_path = "%s/%s" % [ DefaultFilesLoader.destination_folder_path, f ]
+			absolute_file_paths.append(file_full_path)
 
 # signal handling
 func _on_item_list_selected(index: int) -> void:
@@ -70,3 +71,7 @@ func _on_item_list_selected(index: int) -> void:
 		selected.emit(selected_context_tree_idx)
 	else:
 		selected_context_tree_idx = -1
+
+
+func _on_refresh_pressed() -> void:
+	pass # Replace with function body.

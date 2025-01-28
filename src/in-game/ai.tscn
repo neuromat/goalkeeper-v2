@@ -7,5 +7,3 @@
 script = ExtResource("1_rw3w7")
 
 [node name="Ball" parent="." instance=ExtResource("2_srpc8")]
-
-[connection signal="done" from="Ball" to="." method="_on_ball_done"]

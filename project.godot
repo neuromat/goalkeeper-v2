@@ -10,8 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Goalkeeper v2"
+config/name="Goalkeeper-2"
 run/main_scene="res://src/game.tscn"
+config/use_custom_user_dir=true
+config/auto_accept_quit=false
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
