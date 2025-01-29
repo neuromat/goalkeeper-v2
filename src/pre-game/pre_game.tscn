@@ -85,7 +85,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/SetupTime"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "SETUP_TIME_IN_S"
+text = "READINESS_TIME_IN_S"
 
 [node name="HSliderWithLabel" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/SetupTime" instance=ExtResource("2_ahsn8")]
 layout_mode = 2
