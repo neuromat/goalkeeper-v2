@@ -17,59 +17,50 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -76.0
-offset_bottom = 76.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="ContextTreeFilesMargin" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ContextTreeFilesContainer" parent="Control/MarginContainer/VBoxContainer/ContextTreeFilesMargin" instance=ExtResource("2_j0icf")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="ContextTreeFilesMargin" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="MatchOptionsMargin" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ContextTreeFilesContainer" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/ContextTreeFilesMargin" instance=ExtResource("2_j0icf")]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MatchOptionsMargin" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MatchOptions" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin"]
+[node name="MatchOptions" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/MatchOptionsMargin"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions"]
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions"]
 layout_mode = 2
 text = "MATCH_OPTIONS"
 horizontal_alignment = 1
 
-[node name="NRounds" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions"]
+[node name="NRounds" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/NRounds"]
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/NRounds"]
 layout_mode = 2
 size_flags_horizontal = 2
 text = "N_ROUNDS"
 
-[node name="SpinBox" type="SpinBox" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/NRounds"]
+[node name="SpinBox" type="SpinBox" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/NRounds"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -79,43 +70,43 @@ rounded = true
 allow_greater = true
 alignment = 1
 
-[node name="SetupTime" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions"]
+[node name="SetupTime" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/SetupTime"]
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/SetupTime"]
 layout_mode = 2
 size_flags_horizontal = 2
 text = "READINESS_TIME_IN_S"
 
-[node name="HSliderWithLabel" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/SetupTime" instance=ExtResource("2_ahsn8")]
+[node name="HSliderWithLabel" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/SetupTime" instance=ExtResource("2_ahsn8")]
 layout_mode = 2
 
-[node name="FeedbackTime" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions"]
+[node name="FeedbackTime" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/FeedbackTime"]
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/FeedbackTime"]
 layout_mode = 2
 size_flags_horizontal = 2
 text = "FEEDBACK_TIME_IN_S"
 
-[node name="HSliderWithLabel" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/FeedbackTime" instance=ExtResource("2_ahsn8")]
+[node name="HSliderWithLabel" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions/FeedbackTime" instance=ExtResource("2_ahsn8")]
 layout_mode = 2
 
-[node name="ButtonsMargin" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="ButtonsMargin" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Buttons" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/ButtonsMargin"]
+[node name="Buttons" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/ButtonsMargin"]
 layout_mode = 2
 alignment = 1
 
-[node name="Play" type="Button" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/ButtonsMargin/Buttons"]
+[node name="Play" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/ButtonsMargin/Buttons"]
 layout_mode = 2
 text = "PLAY"
 
-[node name="Quit" type="Button" parent="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/ButtonsMargin/Buttons"]
+[node name="Quit" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/ButtonsMargin/Buttons"]
 layout_mode = 2
 text = "QUIT"
 
-[connection signal="pressed" from="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/ButtonsMargin/Buttons/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/ButtonsMargin/Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/ButtonsMargin/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/ButtonsMargin/Buttons/Quit" to="." method="_on_quit_pressed"]
