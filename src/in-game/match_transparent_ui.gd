@@ -7,9 +7,9 @@ class_name MatchTransparentUi
 @onready var ai_history: VBoxContainer = $TopContainer/VBoxContainer/HBoxContainer/AiHistory
 
 # realtime labels
-@onready var readiness_label: Label = $MarginContainer2/HBoxContainer2/Readiness
-@onready var response_label: Label = $MarginContainer2/HBoxContainer2/Response
-@onready var feedback_label: Label = $MarginContainer2/HBoxContainer2/Feedback
+@onready var readiness_label: Label = $TopContainer/VBoxContainer/MarginContainer2/HBoxContainer2/Readiness
+@onready var response_label: Label = $TopContainer/VBoxContainer/MarginContainer2/HBoxContainer2/Response
+@onready var feedback_label: Label = $TopContainer/VBoxContainer/MarginContainer2/HBoxContainer2/Feedback
 
 func _add_to_player_history(player_action: PlayerAction):
 	var label = Label.new()
