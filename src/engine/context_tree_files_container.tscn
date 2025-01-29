@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://duslo6g20rdix"]
 
 [ext_resource type="Script" path="res://src/engine/context_tree_files_container.gd" id="1_a5oju"]
-[ext_resource type="PackedScene" path="res://src/utils/item_list_with_info_on_right.tscn" id="1_v55rm"]
+[ext_resource type="PackedScene" uid="uid://bhe8anit7yjcj" path="res://src/utils/item_list_with_info_on_right.tscn" id="1_v55rm"]
 
 [node name="ContextTreeFilesContainer" type="VBoxContainer"]
 offset_right = 1152.0
@@ -14,12 +14,13 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "CONTEXT_TREE_FILES"
 
-[node name="Refresh" type="Button" parent="."]
-layout_mode = 2
-text = "REFRESH"
-
 [node name="ItemListWithInfosOnRight" parent="." instance=ExtResource("1_v55rm")]
 layout_mode = 2
 
-[connection signal="pressed" from="Refresh" to="." method="_on_refresh_pressed"]
+[node name="Refresh" type="Button" parent="."]
+layout_mode = 2
+tooltip_text = "Re-scans the context trees folder for new files"
+text = "RESCAN_FOLDER"
+
 [connection signal="selected" from="ItemListWithInfosOnRight" to="." method="_on_item_list_selected"]
+[connection signal="pressed" from="Refresh" to="." method="_on_refresh_pressed"]
