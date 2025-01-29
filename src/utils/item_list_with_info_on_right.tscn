@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctj0r6r57qkwh"]
+[gd_scene load_steps=2 format=3 uid="uid://bhe8anit7yjcj"]
 
 [ext_resource type="Script" path="res://src/utils/item_list_with_info_on_right.gd" id="1_f8uqu"]
 
@@ -21,10 +21,12 @@ auto_height = true
 
 [node name="Label" type="Label" parent="."]
 clip_contents = true
+custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "SELECTED_CONTEXT_TREE_INFO_PLACEHOLDER"
+autowrap_mode = 3
 clip_text = true
 
 [connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]
