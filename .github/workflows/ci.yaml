@@ -13,7 +13,7 @@ env:
   EXPORT_NAME: Goalkeeper-2
 
 jobs:
-  export-linux:
+  export-linux: # import, test and export using Ubuntu
     name: Linux Export
     runs-on: ubuntu-20.04
     container:
@@ -37,7 +37,7 @@ jobs:
         run: |
           mkdir -v -p builds/linux
           godot --headless --verbose --export-release "Linux" builds/linux/${EXPORT_NAME}.x86_64
-      - name: Linux Build
+      - name: Windows Build
         run: |
           mkdir -v -p builds/windows
           godot --headless --verbose --export-release "Windows Desktop" builds/windows/${EXPORT_NAME}.exe
