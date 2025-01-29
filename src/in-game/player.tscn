@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://30v3dcqrrswi"]
+[gd_scene load_steps=23 format=3 uid="uid://30v3dcqrrswi"]
 
 [ext_resource type="Script" path="res://src/in-game/player.gd" id="1_qcxv7"]
 [ext_resource type="Texture2D" uid="uid://c7p5idkb856ch" path="res://sprites/goalkeeper/idle.png" id="2_2b81c"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dmqghoyacqsm" path="res://sprites/goalkeeper/jump-8.png" id="18_fm4ks"]
 [ext_resource type="Texture2D" uid="uid://d4mhb8ygeu7ej" path="res://sprites/goalkeeper/jump-9.png" id="19_e8ctk"]
 [ext_resource type="PackedScene" uid="uid://ckla42cdb8y4e" path="res://src/utils/stopwatch.tscn" id="20_oejvm"]
+[ext_resource type="PackedScene" uid="uid://dedofvqictmsg" path="res://src/in-game/buttons_overlay.tscn" id="21_n2abq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rvgw7"]
 animations = [{
@@ -105,7 +106,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer"]
-position = Vector2(576, 324)
+position = Vector2(576, 224)
 sprite_frames = SubResource("SpriteFrames_rvgw7")
 animation = &"idle"
 
@@ -114,3 +115,5 @@ handle_input_locally = false
 render_target_update_mode = 4
 
 [node name="Stopwatch" parent="." instance=ExtResource("20_oejvm")]
+
+[node name="ButtonsOverlay" parent="." instance=ExtResource("21_n2abq")]
