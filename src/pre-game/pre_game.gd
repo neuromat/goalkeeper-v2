@@ -2,11 +2,11 @@ class_name PreGame
 extends Node
 
 @onready var context_tree_files_container: ContextTreeFilesContainer = \
-	$Control/MarginContainer/HBoxContainer/HBoxContainer/ContextTreeFilesMargin/ContextTreeFilesContainer
+	$Control/MarginContainer/VBoxContainer/ContextTreeFilesMargin/ContextTreeFilesContainer
 @onready var match_options: VBoxContainer = \
-	$Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions
+	$Control/MarginContainer/VBoxContainer/HBoxContainer/MatchOptionsMargin/MatchOptions
 @onready var buttons: VBoxContainer = \
-	$Control/MarginContainer/HBoxContainer/HBoxContainer/HBoxContainer/ButtonsMargin/Buttons
+	$Control/MarginContainer/VBoxContainer/HBoxContainer/ButtonsMargin/Buttons
 
 signal event_bus(event: PreGameEvent)
 
