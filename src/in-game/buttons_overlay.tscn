@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://dedofvqictmsg"]
+
+[ext_resource type="Texture2D" uid="uid://cxeeq5lg6jd1e" path="res://sprites/keys/key_a_left.png" id="1_gfwsk"]
+[ext_resource type="Texture2D" uid="uid://c1m8aor1ryeb2" path="res://sprites/keys/key_s_center.png" id="2_mmfeh"]
+[ext_resource type="Texture2D" uid="uid://rghtcgqsvhrj" path="res://sprites/keys/key_d_right.png" id="3_eva7c"]
+
+[node name="ButtonsOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -179.5
+offset_top = -129.0
+offset_right = 179.5
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.65, 0.65)
+pivot_offset = Vector2(180, 100)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="KeyALeft" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_gfwsk")
+
+[node name="KeySCenter" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_mmfeh")
+
+[node name="KeyDRight" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_eva7c")
