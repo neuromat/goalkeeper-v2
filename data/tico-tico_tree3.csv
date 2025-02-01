@@ -1,0 +1,8 @@
+context         , left  , center
+RIGHT           , 0.25  , 0.75
+RIGHT>CENTER    , 0.25  , 0.75
+RIGHT>LEFT      , 0.25  , 0.75
+CENTER>CENTER   , 0     , 0
+CENTER>LEFT     , 0     , 0
+LEFT>CENTER     , 0     , 0
+LEFT>LEFT       , 0     , 0
