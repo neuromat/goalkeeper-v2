@@ -17,8 +17,13 @@ text = "CONTEXT_TREE_FILES"
 [node name="ItemListWithInfosOnRight" parent="." instance=ExtResource("1_v55rm")]
 layout_mode = 2
 
+[node name="SelectedFilePath" type="Label" parent="."]
+layout_mode = 2
+text = "SELECTED_FILE_PATH_PLACEHOLDER"
+
 [node name="Refresh" type="Button" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
 tooltip_text = "Re-scans the context trees folder for new files"
 text = "RESCAN_FOLDER"
 
