@@ -1,0 +1,15 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://clumbafhodw1n"
+valid=false
+
+[deps]
+
+source_file="res://data/nildo_tree3.csv"
+
+[params]
+
+compress=true
+delimiter=0
