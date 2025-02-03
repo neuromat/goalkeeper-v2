@@ -84,6 +84,8 @@ static func _validate_graph(initial_context_, graph_: Dictionary) -> Dictionary:
 		if not graph_.has(context):
 			var message = "context \"%s\" does not define probabilities" \
 				% context
+			if initial_context_ != null:
+				message += " for initial context \"%s\"" % initial_context_
 			errors.append(message)
 			continue
 		

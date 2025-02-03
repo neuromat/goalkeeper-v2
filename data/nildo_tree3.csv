@@ -1,7 +1,7 @@
-context             , left  , center
-LEFT                , 0.25  , 0.75
-RIGHT               , 1     , 0
-LEFT>LEFT>CENTER    , 1     , 0
-CENTER>LEFT>CENTER  , 0     , 1
-RIGHT>LEFT>CENTER   , 0     , 1
-CENTER>CENTER       , 0     , 0
+context                 , left  , center
+LEFT                    , 0.25  , 0.75
+RIGHT                   , 1     , 0
+LEFT>LEFT>CENTER        , 1     , 0
+*CENTER>LEFT>CENTER     , 0     , 1
+RIGHT>LEFT>CENTER       , 0     , 1
+CENTER>CENTER           , 0     , 0
