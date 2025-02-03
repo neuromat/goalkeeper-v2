@@ -45,15 +45,20 @@ func reset() -> void:
 func _load_context_tree_file(absolute_file_path: String) -> Dictionary:
 	var relative_file_path = absolute_file_path.split('/')[-1]
 	var context_tree_file = ContextTreeFile.new(absolute_file_path)
-	var errors = context_tree_file.parser_result['errors']
+	var errors: Array = context_tree_file.parser_result['errors']
+	var text_prefix: String
+	var text_suffix: String = ""
 	var info: String
 	if context_tree_file.is_valid:
+		text_prefix = " \u2705 "
 		info = 'The file is OK!'
 	else:
+		text_prefix = " \u274C "
+		text_suffix = " (%s errors)" % errors.size()
 		info = '\n'.join(errors)
 	context_tree_files.append(context_tree_file)
 	return {
-		'text': relative_file_path,
+		'text': text_prefix + relative_file_path + text_suffix,
 		'info': info
 	}
 

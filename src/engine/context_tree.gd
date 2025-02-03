@@ -80,6 +80,15 @@ static func _validate_graph(initial_context_, graph_: Dictionary) -> Dictionary:
 		var context = queue.pop_front()
 		if context in visited:
 			continue
+		
+		if not graph_.has(context):
+			var message = "context \"%s\" does not define probabilities" \
+				% context
+			if initial_context_ != null:
+				message += " for initial context \"%s\"" % initial_context_
+			errors.append(message)
+			continue
+		
 		visited.append(context)
 		var probabilities_by_choice = graph_[context]
 		
