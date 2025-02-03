@@ -12,7 +12,10 @@ var test_parameters_invalid_context_tree = [
 		"RIGHT>LEFT>CENTER": { "LEFT": .25, "CENTER": .75 },
 		"LEFT>LEFT>LEFT": { "LEFT": 0, "CENTER": 0 }
 	}]
-	# RIGHT --(C)--> RIGHT>CENTER --(L)--> CENTER>LEFT --(L)--> ?
+	# *RIGHT --(C)--> RIGHT>CENTER --(L)--> CENTER>LEFT --(L)--> ?
+	# *RIGHT>CENTER --(L)--> CENTER>LEFT --(L)--> ?
+	# *CENTER>LEFT --(L)--> ?
+	# (*) initial_context 
 func test_should_return_empty_for_incomplete_context_tree(
 	params=use_parameters(test_parameters_invalid_context_tree)):
 	# given
@@ -23,4 +26,4 @@ func test_should_return_empty_for_incomplete_context_tree(
 	
 	# then
 	assert_eq_deep(result['graph'], {})
-	assert_eq((result['errors'] as Array).size(), 1)
+	assert_eq((result['errors'] as Array).size(), 3)
