@@ -19,6 +19,7 @@ layout_mode = 2
 
 [node name="Refresh" type="Button" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
 tooltip_text = "Re-scans the context trees folder for new files"
 text = "RESCAN_FOLDER"
 
