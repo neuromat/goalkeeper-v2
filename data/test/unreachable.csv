@@ -1,0 +1,6 @@
+context         , left	, center
+LEFT            , 0	    , 0.3
+LEFT>CENTER     , 0	    , 1
+CENTER>CENTER   , 1	    , 0
+RIGHT>CENTER    , 1	    , 0
+RIGHT           , 0.5	, 0
