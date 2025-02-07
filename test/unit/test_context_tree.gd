@@ -196,33 +196,33 @@ func test_should_give_an_error_for_a_context_tree_with_unreacheable_contexts():
 	#	RIGHT>CENTER is only reacheable if it's the initial context
 	assert_eq((result['errors'] as Array).size(), 4)
 
-#var test_parameters_valid_context_trees = [
-	## file_path, expected_initial_context
-	#['res://test/unit/resources/01_valid_context_tree.csv', null],
-	#['res://test/unit/resources/02_valid_context_tree_with_initial_context.csv', 'CENTER>CENTER']
-#]
-#func test_should_create_a_valid_context_tree_from_csv_file(
-	#params=use_parameters(test_parameters_valid_context_trees)):
-	## given
-	#var file_path = params[0]
-	#var context_tree = autofree(ContextTree.new())
-	#
-	## when
-	#var result = context_tree.initialize(file_path)
-	#
-	## then
-	#var expected_initial_context = params[1]
-	#var expected_graph = {
-		#"LEFT": { "LEFT": .0, "CENTER": .3 },
-		#"LEFT>CENTER": { "LEFT": .0, "CENTER": 1.0 },
-		#"CENTER>CENTER": { "LEFT": 1.0, "CENTER": .0 },
-		#"RIGHT>CENTER": { "LEFT": 1.0, "CENTER": .0 },
-		#"RIGHT": { "LEFT": .0, "CENTER": 1.0 }
-	#}
-	#var errors = result['errors'] as Array
-	#assert_eq(context_tree.initial_context, expected_initial_context)
-	#assert_eq_deep(context_tree.graph, expected_graph)
-	#assert_eq(errors.size(), 0)
+var test_parameters_valid_context_trees = [
+	# file_path, expected_initial_context
+	['res://data/test/01_valid_context_tree.csv', null],
+	['res://data/test/02_valid_context_tree_with_initial_context.csv', 'CENTER>CENTER']
+]
+func test_should_create_a_valid_context_tree_from_csv_file(
+	params=use_parameters(test_parameters_valid_context_trees)):
+	# given
+	var file_path = params[0]
+	var context_tree = autofree(ContextTree.new())
+	
+	# when
+	var result = context_tree.initialize(file_path)
+	
+	# then
+	var expected_initial_context = params[1]
+	var expected_graph = {
+		"LEFT": { "LEFT": .0, "CENTER": .3 },
+		"LEFT>CENTER": { "LEFT": .0, "CENTER": 1.0 },
+		"CENTER>CENTER": { "LEFT": 1.0, "CENTER": .0 },
+		"RIGHT>CENTER": { "LEFT": 1.0, "CENTER": .0 },
+		"RIGHT": { "LEFT": .0, "CENTER": 1.0 }
+	}
+	var errors = result['errors'] as Array
+	assert_eq(context_tree.initial_context, expected_initial_context)
+	assert_eq_deep(context_tree.graph, expected_graph)
+	assert_eq(errors.size(), 0)
 
 var test_parameters_random_variable = [
 	# current_context, random_variable, expected_choice, expected_probability
