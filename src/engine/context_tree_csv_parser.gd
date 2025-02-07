@@ -80,7 +80,20 @@ static func _parse_context(raw_context: String) -> Dictionary:
 		+ "(\"LEFT\", \"CENTER\" or \"RIGHT\"); check your spelling"
 	
 	var is_initial_context = false
-	var stripped_context = raw_context.to_upper().replace(' ', '')
+	var stripped_context = raw_context.to_upper() \
+		# white spaces
+		.replace(' ', '') \
+		# tabs
+		.replace('\t', '') \
+		# Windows carriage return (before new line)
+		.replace('\r', '') \
+		# end-of-file
+		.replace(char(26), '') \
+		# byte order mark
+		.replace('\uFEFF', '') \
+		# null
+		.replace(char(0), '')
+	
 	if stripped_context.begins_with('*'):
 		is_initial_context = true
 		stripped_context = stripped_context.substr(1)
