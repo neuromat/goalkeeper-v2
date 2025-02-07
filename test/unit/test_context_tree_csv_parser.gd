@@ -123,3 +123,23 @@ func test_should_parse_csv_lines(
 		var expected_probabilities = params[2]
 		for i in expected_probabilities.size():
 			assert_almost_eq(probabilities[i], expected_probabilities[i], .000_001)
+
+var test_parameters_csv_files_paths = [
+	'res://data/test/tabs_instead_of_spaeces.csv',
+	'res://data/test/01_valid_context_tree.csv',
+	'res://data/test/unreachable.csv'
+]
+func test_should_parse_syntatically_valid_csv_files(
+	params=use_parameters(test_parameters_csv_files_paths)):
+	# given
+	var file_path = params
+	
+	# when
+	var result = ContextTreeCsvParser.parse(file_path)
+	print_debug(result)
+	
+	# then
+	var errors = result['errors'] as Array
+	var contexts_and_probabilities = result['contexts_and_probabilities'] as Array
+	assert_eq(errors.size(), 0)
+	assert_ne(contexts_and_probabilities.size(), 0)
