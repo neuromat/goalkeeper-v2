@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ctkp6wgxqp7jm"]
 
 [ext_resource type="Script" path="res://src/pre-game/pre_game.gd" id="1_fnqac"]
-[ext_resource type="PackedScene" path="res://src/utils/h_slider_with_label.tscn" id="2_ahsn8"]
+[ext_resource type="PackedScene" uid="uid://cd1gegfrcado0" path="res://src/utils/h_slider_with_label.tscn" id="2_ahsn8"]
 [ext_resource type="PackedScene" uid="uid://duslo6g20rdix" path="res://src/engine/context_tree_files_container.tscn" id="2_j0icf"]
 
 [node name="PreGame" type="Node"]
