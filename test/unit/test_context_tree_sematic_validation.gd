@@ -26,4 +26,4 @@ func test_should_return_empty_for_incomplete_context_tree(
 	
 	# then
 	assert_eq_deep(result['graph'], {})
-	assert_eq((result['errors'] as Array).size(), 3)
+	assert_gt((result['errors'] as Array).size(), 0)

@@ -66,7 +66,16 @@ static func _validate_graph(initial_context_, graph_: Dictionary) -> Dictionary:
 	
 	var queue: Array
 	if initial_context_ == null:
-		queue = graph_.keys() # consider any context as initial
+		var possible_initial_contexts: Array = graph_.keys()
+		for i in possible_initial_contexts:
+			var errors_given_initial_context: Array = \
+				_validate_graph(i, graph_)['errors']
+			if errors_given_initial_context.size() > 0:
+				errors.append_array(errors_given_initial_context)
+		return { 
+			"graph": graph_ if errors.size() == 0 else {},
+			"errors": errors
+		}
 	else:
 		if initial_context_ not in graph_.keys():
 			errors.append(
