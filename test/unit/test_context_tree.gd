@@ -176,28 +176,25 @@ func test_should_validate_a_context_tree_given_an_invalid_initial_context(
 	assert_eq_deep(result['graph'], {})
 	assert_eq(result['errors'].size(), 1)
 
-var test_parameters_invalid_context_trees_with_initial_context = [
-	# initial_context, context_tree
-	['LEFT', {
+func test_should_give_an_error_for_a_context_tree_with_unreacheable_contexts():
+	# given
+	var initial_context = null
+	var context_tree = {
 		"LEFT": { "LEFT": .0, "CENTER": .3 },
 		"LEFT>CENTER": { "LEFT": .0, "CENTER": 1.0 },
 		"CENTER>CENTER": { "LEFT": 1.0, "CENTER": .0 },
 		"RIGHT>CENTER": { "LEFT": 1.0, "CENTER": .0 },
-		"RIGHT": { "LEFT": .5, "CENTER": .0 } # RIGHT>CENTER unreacheable
-	}],
-]
-func test_should_give_an_error_for_a_context_tree_with_unreacheable_contexts(
-	params=use_parameters(test_parameters_invalid_context_trees_with_initial_context)):
-	# given
-	var initial_context = params[0]
-	var context_tree = params[1]
+		"RIGHT": { "LEFT": .5, "CENTER": .0 } # 0 makes RIGHT>CENTER unreacheable
+	}
 	
 	# when
 	var result = ContextTree._validate_graph(initial_context, context_tree)
 	
 	# then
 	assert_eq_deep(result['graph'], {})
-	assert_eq((result['errors'] as Array).size(), 1)
+	# and
+	#	RIGHT>CENTER is only reacheable if it's the initial context
+	assert_eq((result['errors'] as Array).size(), 4)
 
 #var test_parameters_valid_context_trees = [
 	## file_path, expected_initial_context
