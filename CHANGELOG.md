@@ -1,3 +1,11 @@
+# Changelog [2.0.0-alpha.2] (2025-02-10)
+
+### Bug Fixes
+
+* parser should replace non-visible char with empty ([#20](https://github.com/neuromat/goalkeeper-v2/issues/20)) ([ecc0948](https://github.com/neuromat/goalkeeper-v2/commit/ecc09483b78a78dcb26614be669e60faa66c99af))
+* unreachable contexts ([#19](https://github.com/neuromat/goalkeeper-v2/issues/19)) ([65a8b5d](https://github.com/neuromat/goalkeeper-v2/commit/65a8b5d7d412b3f0949cee2e6f7eb2a3b130bbce))
+
+
 # Changelog [2.0.0-alpha.1] (2025-02-05)
 
 ### Bug Fixes
