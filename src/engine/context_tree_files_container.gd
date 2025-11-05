@@ -72,7 +72,7 @@ func _load_absolute_file_paths() -> void:
 func _update_selected_file_path(index: int) -> void:
 	var absolute_file_path: String = absolute_file_paths[index]
 	var os_file_path = OS.get_data_dir() + \
-		absolute_file_path.substr("user://".length())
+		"/" + absolute_file_path.substr("user://".length())
 	$SelectedFilePath.text = "File selected: %s" % os_file_path
 
 # signal handling
