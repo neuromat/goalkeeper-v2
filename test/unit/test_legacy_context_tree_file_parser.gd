@@ -9,7 +9,10 @@ extends GutTest
 # 3. the parser acts on syntax and semantics validation
 
 var test_parameters_files_paths = [
-	# [ target file, length of "context and probabilities" ]
+	# [ target file, length of "contexts_and_probabilities" ]
+	['res://data/test/legacy/diamante_tree_1.txt', 3],
+	['res://data/test/legacy/diamante_tree_2.txt', 4],
+	['res://data/test/legacy/diamante_tree_3.txt', 8],
 	['res://data/test/legacy/diamante_tree_4.txt', 7]
 ]
 func test_should_validate_probability_values(
