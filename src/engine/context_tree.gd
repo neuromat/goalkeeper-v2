@@ -5,7 +5,11 @@ var initial_context = null
 var current_context: String
 
 func initialize(context_tree_file_path: String) -> Dictionary:
-	var parser_result = ContextTreeCsvParser.parse(context_tree_file_path)
+	var parser_result
+	if context_tree_file_path.ends_with('.csv'):
+		parser_result = ContextTreeCsvParser.parse(context_tree_file_path)
+	else:
+		parser_result = LegacyContextTreeFileParser.parse(context_tree_file_path)
 	var parsing_errors = parser_result['errors'] as Array
 	if parsing_errors.size() > 0:
 		return { "errors": parser_result['errors'] }
