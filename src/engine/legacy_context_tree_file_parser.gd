@@ -15,29 +15,42 @@ static func _parser_file(file_content: String) -> Dictionary:
 		# [TODO] parse other aspects of the file: deterministic and other game types
 		return result
 	return {
+		"contexts_and_probabilities": [],
+		"initial_context": null,
 		"errors": ["unable to parse the JSON object"]
 	}
 
 static func _parse_choice_state_machine(choice_state_machine_lines: Array) \
 	-> Dictionary:
-	var parsed_lines = []
+	var contexts_and_probabilities = []
+	var used_contexts = []
 	var errors = []
 	for i in choice_state_machine_lines.size():
-	#for line in choice_state_machine_lines:
 		var line = choice_state_machine_lines[i]
 		var result = _parse_choice_state_machine_line(line)
-		parsed_lines.append(result)
+		
+		var context = result['context']
+		if context in used_contexts:
+			errors.append('In "states" element %s: context previously declared' % i)
+		else:
+			used_contexts.append(context)
+		
 		for e in result['errors']:
 			errors.append(('In "states" element %s: ' + e) % i)
+		
+		contexts_and_probabilities.append(result)
+		
 	
 	if errors.size():
 		return {
 			"contexts_and_probabilities": [],
+			"initial_context": null,
 			"errors": errors
 		}
 	
 	return {
-		"contexts_and_probabilities": parsed_lines,
+		"contexts_and_probabilities": contexts_and_probabilities,
+		"initial_context": null,
 		"errors": errors
 	}
 

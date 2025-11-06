@@ -31,7 +31,12 @@ func test_should_validate_probability_values(
 	# and
 	var contexts_and_probabilities = result['contexts_and_probabilities'] as Array
 	var expected_context_and_probabilities_size = params[1]
-	assert_eq(contexts_and_probabilities.size(), expected_context_and_probabilities_size)
+	assert_eq(contexts_and_probabilities.size(), 
+		expected_context_and_probabilities_size)
+	
+	# and
+	var initial_context = result['initial_context']
+	assert_null(initial_context)
 
 func test_should_validate_file_format():
 	# given
@@ -54,3 +59,14 @@ func test_should_validate_probabilities():
 	# then
 	var errors = result['errors']
 	assert_eq(errors.size(), 3)
+
+func test_should_identify_repeated_context():
+	# given
+	var file_path = 'res://data/test/legacy/repeated_context.txt'
+	
+	# when
+	var result: Dictionary = LegacyContextTreeFileParser.parse(file_path)
+	
+	# then
+	var errors = result['errors']
+	assert_eq(errors.size(), 1)
