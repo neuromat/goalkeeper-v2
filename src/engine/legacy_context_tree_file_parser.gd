@@ -10,21 +10,35 @@ static func parse(file_path: String) -> Dictionary:
 
 static func _parser_file(file_content: String) -> Dictionary:
 	var data = JSON.parse_string(file_content)
-	var result = _parse_choice_state_machine(data['states'])
-	# [TODO] parse other aspects of the file: deterministic and other game types
-	return result
+	if data:
+		var result = _parse_choice_state_machine(data['states'])
+		# [TODO] parse other aspects of the file: deterministic and other game types
+		return result
+	return {
+		"errors": ["unable to parse the JSON object"]
+	}
 
 static func _parse_choice_state_machine(choice_state_machine_lines: Array) \
 	-> Dictionary:
 	var parsed_lines = []
-	for line in choice_state_machine_lines:
+	var errors = []
+	for i in choice_state_machine_lines.size():
+	#for line in choice_state_machine_lines:
+		var line = choice_state_machine_lines[i]
 		var result = _parse_choice_state_machine_line(line)
 		parsed_lines.append(result)
-		
+		for e in result['errors']:
+			errors.append(('In "states" element %s: ' + e) % i)
+	
+	if errors.size():
+		return {
+			"contexts_and_probabilities": [],
+			"errors": errors
+		}
+	
 	return {
 		"contexts_and_probabilities": parsed_lines,
-		"initial_context": null,
-		"errors": []
+		"errors": errors
 	}
 
 static func _parse_choice_state_machine_line(choice_state_machine_line: 
@@ -43,9 +57,16 @@ static func _parse_choice_state_machine_line(choice_state_machine_line:
 	var probability_left = float(choice_state_machine_line["probEvent0"])
 	var probability_center = float(choice_state_machine_line["probEvent1"])
 	
-	# [TODO] validate probability values
+	var errors: Array
+	if probability_left + probability_center > 1.0:
+		errors.append('probabilities sum > 1.0')
+	if probability_left < 0.0:
+		errors.append('probability %s < 0.0' % probability_left)
+	if probability_center < 0.0:
+		errors.append('probability %s < 0.0' % probability_center)
 	
 	return {
 		"context": context,
-		"probabilities": [probability_left, probability_center]
+		"probabilities": [probability_left, probability_center],
+		"errors": errors
 	}
