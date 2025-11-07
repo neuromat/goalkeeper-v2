@@ -65,14 +65,14 @@ func _load_context_tree_file(absolute_file_path: String) -> Dictionary:
 func _load_absolute_file_paths() -> void:
 	var file_names = DirAccess.get_files_at(DefaultFilesLoader.destination_folder_path)
 	for f in file_names:
-		if f.ends_with('.csv'):
+		if f.ends_with('.csv') or f.ends_with('.txt'):
 			var file_full_path = "%s/%s" % [ DefaultFilesLoader.destination_folder_path, f ]
 			absolute_file_paths.append(file_full_path)
 
 func _update_selected_file_path(index: int) -> void:
 	var absolute_file_path: String = absolute_file_paths[index]
 	var os_file_path = OS.get_data_dir() + \
-		absolute_file_path.substr("user://".length())
+		"/" + absolute_file_path.substr("user://".length())
 	$SelectedFilePath.text = "File selected: %s" % os_file_path
 
 # signal handling

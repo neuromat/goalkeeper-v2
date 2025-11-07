@@ -11,7 +11,7 @@ static func load():
 			print_debug(error)
 	var file_names = DirAccess.get_files_at(origin_folder_path)
 	for f in file_names:
-		if f.ends_with('.csv'):
+		if f.ends_with('.csv') or f.ends_with('.txt'):
 			var from_path = "%s/%s" % [ origin_folder_path, f ]
 			var to_path = "%s/%s" % [ destination_folder_path, f ]
 			# var error = DirAccess.copy_absolute(from_path, to_path)
